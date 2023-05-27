@@ -1,0 +1,28 @@
+.profile-container{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.profile-img{
+    margin-right: 10px;
+}
+
+.profile-name{
+
+
+}
+
+.profile-opts{
+    margin-left: 6px;
+
+}
+
+
+
+
+
+
+
+
+
