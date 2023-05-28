@@ -26,12 +26,17 @@
 }
 
 .post-interactions{
+    
+}
+
+.post-interactions-controlls{
     display: flex;
     justify-content: space-around;
 
     padding: 5% 0;
     width: 100%;
     border-top: 1px solid black;
+
 }
 
 .post-comments{

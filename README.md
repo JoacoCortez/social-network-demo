@@ -1,1 +1,1 @@
-# Red Social (React js + Node + SASS)
+# Red Social (React js + Node + MongoDB)

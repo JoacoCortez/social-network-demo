@@ -1,5 +1,5 @@
 const express = require("express")
-const {Router} = express()
+const {Router} = express
 
 const router = Router()
 
@@ -17,6 +17,22 @@ router.get("/login", (req, res) =>{
 
 
 })
+
+
+router.get("/home", (req, res) =>{
+    try {
+            
+        
+        
+    } catch (error) {
+        console.log(`[ROUTER GET "/LOGIN" ERROR] `, error)
+    
+    
+    }
+
+
+})
+
 
 router.post("/login", (req, res) =>{
     const data = req.body
@@ -45,6 +61,7 @@ router.post("/login", (req, res) =>{
 
 
 })
+
 
 router.put("/login", (req, res) =>{
     try {

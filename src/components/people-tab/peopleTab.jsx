@@ -3,6 +3,9 @@ import "./people-tab.css";
 
 
 export default function PeopleTab() {
+  
+  
+  
   return (
     <div className='people-tab-container'>
       <h3>Personas conectadas</h3>
