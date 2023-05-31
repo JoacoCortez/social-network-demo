@@ -5,7 +5,7 @@ import "./topNavbar.css";
 export default function TopNavbar() {
   return (
     <div className='top-navbar'>
-      <Profile/>
+      <Profile size="small"/>
 
     </div>
   )

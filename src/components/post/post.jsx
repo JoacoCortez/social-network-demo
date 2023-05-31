@@ -1,25 +1,26 @@
-import React from 'react';
+import React, { useState } from 'react';
 import axios from "axios";
 import titi from "../../media/eltiti.jpg";
-import Post from '../../../server/models/post';
+import Post from '../../server/models/post';
 import "./post.css";
 
 
 
 
-export default function Post() {
+export default function PostTab() {
   
+  const [interaction, setInteraction] = useState([])
 
-  async function handleInteraction(postID, userID, interactions){
+  async function handleInteraction(postID, userID, interactionType){
       //Guarda la reaccion en la base de datos (AXIOS?)
       try {
         const newInteraction = await axios.post("/api/interactions", {
           postID, 
           userID,
-          interactions
+          interactionType
         })
 
-
+        setInteraction(newInteraction)
 
         
         
@@ -41,8 +42,8 @@ export default function Post() {
       </div>
       <div className="post-interactions">
         {/* mostrar interacciones  */}
-        {newInteraction.interactions.length !== 0 ? 
-          newInteraction.interactions
+        {interaction.length !== 0 ? 
+          interaction
           :
           ""
         }

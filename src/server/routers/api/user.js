@@ -1,22 +1,11 @@
 const express = require("express")
 const {Router} = express
 
+const controller = require("../../controllers/userController")
 const router = Router()
 
 
-router.get("/login", (req, res) =>{
-    try {
-            
-        
-        
-    } catch (error) {
-        console.log(`[ROUTER GET "/LOGIN" ERROR] `, error)
-    
-    
-    }
-
-
-})
+router.get("/login", controller.getAll)
 
 
 router.get("/home", (req, res) =>{
@@ -77,3 +66,5 @@ router.put("/login", (req, res) =>{
 
 
 })
+
+module.exports = router

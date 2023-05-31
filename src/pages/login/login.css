@@ -2,3 +2,56 @@
     height: 100vh;
     
 }
+
+.login-form-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid black;
+    border-radius: 2%;
+
+    margin: 12% 0;
+    width: 40%;
+
+    position: relative;
+    left: 46%;
+}
+
+.login-form{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;    
+}
+
+.form-input{
+    position: relative;
+    left: 20%;
+
+    margin: 2% 0;
+
+    width: 60%;
+    height: 2.2rem;
+
+    font-size: 1.1rem;
+    
+}
+
+.form-submit{
+    position: relative;
+    left: 25%;
+    
+    margin: 4% 0;
+
+    width: 50%;
+    height: 2rem;
+}
+
+.register-text{
+    margin: 3% 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+
+}

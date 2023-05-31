@@ -1,0 +1,28 @@
+.search-tab-container{
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+
+}
+
+.search-tab{
+    margin-bottom: 12%;
+    padding-bottom: 12%;
+    border-bottom: 1px solid black;
+}
+
+.search-tab input{
+    margin-left: 5%;
+
+}
+
+.search-results{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+
+}
+

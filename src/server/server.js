@@ -9,15 +9,15 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 
-const userOpts = require("./routers/api/user")
+const userRouter = require("./routers/api/user")
+const postRouter = require("./routers/api/posts")
 
 
 
 
 
-
-app.use("/api/user", userOpts)
-
+app.use("/api/user", userRouter)
+app.use("/api/post", postRouter)
 
 
 
