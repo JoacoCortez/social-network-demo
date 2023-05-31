@@ -1,0 +1,38 @@
+.people-tab-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    float: right;
+    margin: 5% 9% 5% 0;
+    width: 15%;
+    
+}
+
+.people-tab{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+
+    white-space: nowrap;
+    width: 100%;
+}
+
+.status{
+    
+    margin-left: 3%;
+   
+    height: 1.2rem;
+    width: 1.2rem;
+
+    border-radius: 50%;
+    background-color: greenyellow;
+
+}
+
+
+
+
+

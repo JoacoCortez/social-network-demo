@@ -1,0 +1,13 @@
+COMPONENTES:
+
+-SideNavbar
+-Profile
+-Post
+-People-tab
+
+HACER MODAL PARA EL REGISTRO, EDICION DE PERFIL Y LISTA DE SEGUIDORES.
+
+
+CVLrBujN32D6wmoD
+
+mongosh "mongodb+srv://cluster0.0u89epz.mongodb.net" --apiVersion 1 --username admin

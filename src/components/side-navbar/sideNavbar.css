@@ -1,0 +1,52 @@
+.side-navbar{
+    display: flex;
+    flex-direction: column;
+    
+
+    position: sticky;
+    float: left;
+
+    width: 16%;
+    height: 100vh;
+    
+    padding: 3% 1%;
+
+    background-color: #EEEEEE;
+    border-right: 1px solid black;
+}
+
+.logo{
+    padding-bottom: 20%;
+    
+}
+
+.nav-list{
+    list-style-type: none;
+}
+
+.nav-list li{
+    display: flex;
+    align-items: center;
+
+}
+
+.nav-list li a svg{
+    font-size: 1.6rem;
+    color: black;
+}
+
+.list-text{
+    padding: 8% 4%;
+    font-size: 1.2rem;
+}
+
+
+
+
+
+
+
+
+
+
+
