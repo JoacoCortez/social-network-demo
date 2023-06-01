@@ -1,6 +1,7 @@
 .top-navbar{
     height: 12vh;
-    background-color: #EEEEEE;
+    /* background-color: #EEEEEE; */
     padding: 2% 9%;
+    background-color: red;
     
 }

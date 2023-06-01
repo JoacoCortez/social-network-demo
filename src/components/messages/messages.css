@@ -1,0 +1,45 @@
+.messages-container{
+    position: fixed;
+    bottom: 0%;
+    right: 0;
+    
+    margin-right: 11%;
+
+    background-color: red;
+    width: 10%;
+
+    
+    transition: all 0.4s ease-in-out;
+}
+
+.messages-container.expanded{
+    transform: translateY(-50%);
+
+}
+
+
+.messages-list{
+    max-height: 50%;
+    overflow-y: auto;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

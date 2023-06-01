@@ -31,7 +31,7 @@ export default function SideNavbar() {
   return (
     <div className='side-navbar'>
       <img src="" alt="Logo" className='logo'/>
-      <ul className='nav-list'>
+      <ul className='side-nav-list'>
         { show ? <SearchTab/> :
           <>
             <li>
