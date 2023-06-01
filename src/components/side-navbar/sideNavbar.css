@@ -12,6 +12,7 @@
     padding: 3% 1%;
 
     background-color: #EEEEEE;
+    
     border-right: 1px solid black;
 }
 
@@ -20,17 +21,22 @@
     
 }
 
-.nav-list{
+.side-nav-list{
     list-style-type: none;
+    
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
 }
 
-.nav-list li{
+.side-nav-list li{
     display: flex;
     align-items: center;
 
 }
 
-.nav-list li a svg{
+.side-nav-list li a svg{
     font-size: 1.6rem;
     color: black;
 }
@@ -38,6 +44,8 @@
 .list-text{
     padding: 8% 4%;
     font-size: 1.2rem;
+
+    margin: 0;
 }
 
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from "axios";
-import titi from "../../media/eltiti.jpg";
+import foto from "../../media/batman.jpg";
 import Post from '../../server/models/post';
 import "./post.css";
 
@@ -38,7 +38,7 @@ export default function PostTab() {
         <p>Nene chisito</p>
       </div>
       <div className="post">
-        <img src={titi} alt="Post" />
+        <img src={foto} alt="Post" className='post-media'/>
       </div>
       <div className="post-interactions">
         {/* mostrar interacciones  */}
