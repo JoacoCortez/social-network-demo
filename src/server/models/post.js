@@ -1,27 +1,25 @@
-const mongoose = require("mongoose")
-const {Schema} = require("mongoose")
+const mongoose = require("mongoose");
+const { Schema, Types } = require("mongoose");
+const MongodbBase = require("../controllers/mongodbController");
 
-class Post {
-    constructor(){
-        
+
+class Post extends MongodbBase{
+    constructor(){     
         const interactionsSchema = new mongoose.Schema({
             userId: {type: String, required: true},
             interactionType: {type: String, enum: ["like", "comment", "bones"]}      
 
         })
         
-        const postSchema = new mongoose.Schema({
+        super("Posts", new Schema({
             postID: {type: String, required: true, unique: true},
-            author: {type: String, required: true,},
-            content: {type: mongoose.Mixed    , required: true},
+            author: {type: String, required: true, unique: true},
+            content: {type: "Mixed", required: true},
             interactionType : [interactionsSchema]
 
-
-        })
-
-
-        this.model = mongoose.model("postSchema", postSchema)
+        }))
     }
-}
+} 
 
-module.exports = Post
+
+module.exports = Post;

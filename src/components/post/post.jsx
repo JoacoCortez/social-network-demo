@@ -49,9 +49,9 @@ export default function PostTab() {
         }
         
         <div className="post-interactions-controlls">
-          <button className="button-interaction" onClick={handleInteraction()}>A</button>
-          <button className="button-interaction" onClick={handleInteraction()}>B</button>
-          <button className="button-interaction" onClick={handleInteraction()}>C</button>
+          <button className="button-interaction" onClick={handleInteraction}>A</button>
+          <button className="button-interaction" onClick={handleInteraction}>B</button>
+          <button className="button-interaction" onClick={handleInteraction}>C</button>
         </div>  
       </div>
       <div className="post-comments">
