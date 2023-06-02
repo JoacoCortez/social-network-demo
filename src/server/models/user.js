@@ -1,18 +1,16 @@
-const mongoose = require("mongoose")
+const { Schema, Types } = require("mongoose");
+const MongodbBase = require("../controllers/mongodbController");
 
 
-class User{
-    constructor(){     //Arreglar esto 
-        const userSchema = new mongoose.Schema({
+class User extends MongodbBase{
+    constructor(){     
+        super("Users", new Schema({
             username: { type: String, required: true, unique: true},
             email: {type: String, required: true, unique: true},
             password: {type: String, required: true},
-        })
 
-        this.model = mongoose.model("User", userSchema)
+        }))
     }
-
-
 } 
 
 

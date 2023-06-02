@@ -1,9 +1,10 @@
-const express = require("express")
-const {Router} = express
+const express = require("express");
+const {Router} = express;
 
-const controller = require("../../controllers/userController")
-const router = Router()
+const router = Router();
 
+const userModel = require("../../models/user");
+const controller = new userModel
 
 router.get("/login", controller.getAll)
 
@@ -23,33 +24,37 @@ router.get("/home", (req, res) =>{
 })
 
 
+router.post("/login", controller.post)
+
+
+
+
+
 router.post("/login", (req, res) =>{
     const data = req.body
 
-    async function verifyUser(data){
-       
-        
-        const usersDB = 2 //traemos los usuarios de mongo y verificamos si existe uno
-        
-        try {
-            if(usersDB.map( users => users.username && users.password === data.username && data.password)){
+    const usersDB = controller.getAll
 
-                res.status(200).send("Welcome")
 
-            } else{
-                res.status(401).send("Nombre de usuario o Contraseña incorrectos")
-            }
-        
-        
-        } catch (error) {
-            console.log(`[ROUTER POST "/LOGIN" ERROR] `, error)
-        
-            
+    try {
+        if(usersDB.map( users => users.username && users.password === data.username && data.password)){
+
+            res.status(200).send("Welcome")
+
+        } else{
+            res.status(401).send("Nombre de usuario o Contraseña incorrectos")
         }
+    
+    
+    } catch (error) {
+        console.log(`[ROUTER POST "/LOGIN" ERROR] `, error)
+    
+        
     }
 
-
 })
+
+    
 
 
 router.put("/login", (req, res) =>{

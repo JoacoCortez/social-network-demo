@@ -3,17 +3,21 @@
     bottom: 0%;
     right: 0;
     
-    margin-right: 11%;
+    margin-right: 9%;
 
     background-color: red;
     width: 10%;
+    
 
     
-    transition: all 0.4s ease-in-out;
+    transition: all 0.3s ease-in-out;
 }
 
 .messages-container.expanded{
-    transform: translateY(-50%);
+    height: 60%;
+    transition: all 0.3s ease-in-out;
+   
+    
 
 }
 
