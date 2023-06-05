@@ -6,7 +6,7 @@ const config = require("../db/config");
 async function conectDB(){
     try {
         await mongoose.connect(config.URI)
-        console.log("jidjsa") 
+        console.log("MongoDB connection succesfull") 
     } catch (error) {
         console.log(error)
     }

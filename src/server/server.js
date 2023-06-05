@@ -1,27 +1,27 @@
-import express from "express"
-import http  from "http"
+const express = require("express");
+const http = require("http");
 
-
-const app = express()
-const server = http.createServer(app)
+const app = express();
+const PORT = 8080;
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
 
 const userRouter = require("./routers/api/user")
-const postRouter = require("./routers/api/posts")
+// const postRouter = require("./routers/api/posts")
 
 
 
 
 
 app.use("/api/user", userRouter)
-app.use("/api/post", postRouter)
+// app.use("/api/post", postRouter)
 
 
 
 
+const server = http.createServer(app)
 server.listen(PORT, () => {
 
     console.log("Server running")

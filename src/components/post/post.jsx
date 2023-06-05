@@ -3,6 +3,7 @@ import axios from "axios";
 import foto from "../../media/batman.jpg";
 import Post from '../../server/models/post';
 import "./post.css";
+import Profile from '../profile/profile';
 
 
 
@@ -34,8 +35,7 @@ export default function PostTab() {
   return (
     <div className='post-container'>
       <div className="post-author">
-        <img src="" alt="Profile-picture-author"/>
-        <p>Nene chisito</p>
+        <Profile size={"author"}/>
       </div>
       <div className="post">
         <img src={foto} alt="Post" className='post-media'/>

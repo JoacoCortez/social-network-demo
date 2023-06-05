@@ -9,6 +9,8 @@ import "./profile.css";
 
 const Small = () =>{
 
+  
+  
   return (
     <div className='profile-container-small'>
       <Link to={"/profile"}>
@@ -119,6 +121,22 @@ const Big = () =>{
 }
 
 
+const Author = () =>{
+
+  return(
+    <div className='profile-container-author'>
+      <Link to={"/profile"}>
+        <img src={chano} alt="profile-picture" className='profile-img-author'/>
+      </Link>
+      <p className="profile-name-author">Joaquin Cortez</p>
+    </div>
+  )
+}
+
+
+
+
+
 
 export default function Profile({size}) {
   
@@ -126,6 +144,8 @@ export default function Profile({size}) {
     return <Small/>
   }else if(size === "big"){
     return <Big/>
+  } else {
+    return <Author/>
   }
 }
 

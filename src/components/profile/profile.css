@@ -209,3 +209,32 @@
 
 
 
+.profile-container-author{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    
+    height: 100%;
+    padding-left: 4%;
+}
+
+.profile-img-author{
+    height: 60px;
+    width: 60px;
+
+    border-radius: 50%;
+
+}
+
+.profile-name-author{
+    margin: 0;
+    padding-left: 2%;
+
+}
+
+
+
+
+
+
+
