@@ -19,11 +19,11 @@ conectDB()
 class MongodbBase{
     constructor(modelName, schema){
         this.collection = mongoose.model(modelName, schema)
+        console.log("JAAAAAAAAAAAAAAAA", this.collection.find({}))
     }
 
-
     
-    async getAll(req, res){
+    getAll = async (req, res) => {
         try {
             const documents = await this.collection.find({})
             return res.status(200).json(documents)
@@ -37,7 +37,8 @@ class MongodbBase{
     
     
     
-    async getByID(req, res){
+    
+    getByID = async (req, res) =>{
         try {
             const id = req.query
 
@@ -50,9 +51,10 @@ class MongodbBase{
     }
     
     
-    async post(req, res){
+    post = async (req, res) =>{
         try {
             const data = req.body
+            console.log("COLLECTIONJDSA", this.collection)
 
             const documents = await this.collection.create(data)
             return res.status(201).json(documents)
@@ -63,7 +65,7 @@ class MongodbBase{
     }
     
 
-    async update(req, res){
+    update = async (req, res) =>{
         try {
             const data = req.body
 
@@ -76,7 +78,7 @@ class MongodbBase{
     }
     
     
-    async delete(req, res){
+    delete = async (req, res) =>{
         try {
             const id = req.params
 
@@ -89,7 +91,7 @@ class MongodbBase{
     }
 
 
-    async verify(req, res){
+    verify = async (req, res) =>{
         try {
             const data = req.body
 

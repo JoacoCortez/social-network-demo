@@ -4,11 +4,11 @@ const {Router} = express;
 const router = Router();
 
 const userModel = require("../../models/user");
-const controller = new userModel()
+const controller = new userModel
 
-console.log("CONTROLLERERRERE",  controller)
+console.log("CONTROLLERERRERE",  controller.collection)
 
-router.get("/login", controller.post)
+router.get("/login", controller.getAll)
 
 
 // router.get("/home", (req, res) =>{
