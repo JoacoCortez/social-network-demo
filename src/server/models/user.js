@@ -3,7 +3,8 @@ const MongodbBase = require("../controllers/mongodbController");
 
 
 class User extends MongodbBase{
-    constructor(){     
+    constructor(){   
+        console.log("------------------------------------------------")  
         super("Users", new Schema({
             username: { type: String, required: true, unique: true},
             email: {type: String, required: true, unique: true},

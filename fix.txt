@@ -10,4 +10,6 @@ HACER MODAL PARA EL REGISTRO, EDICION DE PERFIL Y LISTA DE SEGUIDORES.
 
 CVLrBujN32D6wmoD
 
-mongosh "mongodb+srv://cluster0.0u89epz.mongodb.net" --apiVersion 1 --username admin
+mongosh "mongodb+srv://admin:CVLrBujN32D6wmoD@cluster0.0u89epz.mongodb.net" --apiVersion 1 --username admin
+mongodb+srv://admin:<password>@cluster0.0u89epz.mongodb.net/
+mongodb+srv://admin:CVLrBujN32D6wmoD@cluster0.0u89epz.mongodb.net/?retryWrites=true&w=majority
