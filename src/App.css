@@ -7,3 +7,7 @@
 body{
   background-color: #EEEEEE;
 }
+
+p{
+  margin: 0;
+}
