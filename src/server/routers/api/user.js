@@ -3,31 +3,18 @@ const {Router} = express;
 
 const router = Router();
 
-const userModel = require("../../models/user");
-const controller = new userModel
+const UserModel = require("../../models/user");
+const controller = new UserModel
 
-console.log("CONTROLLERERRERE",  controller.collection)
+
 
 router.get("/login", controller.getAll)
 
-
-// router.get("/home", (req, res) =>{
-//     try {
-            
-        
-        
-//     } catch (error) {
-//         console.log(`[ROUTER GET "/LOGIN" ERROR] `, error)
-    
-    
-//     }
-
-
-// })
-
+router.get("/home", controller.getAll)
 
 router.post("/login", controller.post)
 
+router.put("/login", controller.update)
 
 
 
@@ -59,19 +46,7 @@ router.post("/login", controller.post)
     
 
 
-router.put("/login", (req, res) =>{
-    try {
-            
-        
-        
-    } catch (error) {
-        console.log(`[ROUTER PUT "/LOGIN" ERROR] `, error)
-    
-    
-    }
 
 
-
-})
 
 module.exports = router

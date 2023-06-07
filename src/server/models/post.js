@@ -15,7 +15,7 @@ class Post extends MongodbBase{
             postID: {type: String, required: true, unique: true},
             author: {type: String, required: true, unique: true},
             content: {type: "Mixed", required: true},
-            interactionType : [interactionsSchema]
+            interactionData : [interactionsSchema]
 
         }))
     }

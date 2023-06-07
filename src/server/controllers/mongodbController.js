@@ -19,7 +19,6 @@ conectDB()
 class MongodbBase{
     constructor(modelName, schema){
         this.collection = mongoose.model(modelName, schema)
-        console.log("JAAAAAAAAAAAAAAAA", this.collection.find({}))
     }
 
     
@@ -80,10 +79,11 @@ class MongodbBase{
     
     delete = async (req, res) =>{
         try {
-            const id = req.params
+            const id = req.params.id
+            console.log("IDEEEEWE", id)
 
-            const documents = await this.collection.delete({_id: id})
-            return res.status(200)
+            const documents = await this.collection.deleteOne({postID: id})
+            return res.status(200).send("Post deleted")
         } catch (error) {
             console.log("[MONGODB CONTROLLER DELETE ERROR] ", error)
             return res.status(500).json("[MONGODB CONTROLLER DELETE ERROR]" , error)
