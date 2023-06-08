@@ -94,9 +94,17 @@ class MongodbBase{
     verify = async (req, res) =>{
         try {
             const data = req.body
-
-            const documents = await this.collection.find({ username: data.username, password: data.password })
-            return res.status(200).json(documents)
+            const result = await this.collection.find({ username: data.username, password: data.password })
+            
+            
+            if(result){
+                console.log("SIDBSAIUDASBIEN")
+            }else{
+                console.log("Nombre de usuario o contraseña incorrecta")
+            }
+            
+            // const documents = await this.collection.find({ username: data.username, password: data.password })
+            // return res.status(200)
         } catch (error) {
             console.log("[MONGODB CONTROLLER VERIFY ERROR] ", error)
             return res.status(500).json("[MONGODB CONTROLLER VERIFY ERROR]" , error)

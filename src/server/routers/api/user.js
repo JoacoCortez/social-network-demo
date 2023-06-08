@@ -8,11 +8,11 @@ const controller = new UserModel
 
 
 
-router.get("/login", controller.getAll)
+router.get("/login", controller.verify)
 
 router.get("/home", controller.getAll)
 
-router.post("/login", controller.post)
+router.post("/login", controller.verify)
 
 router.put("/login", controller.update)
 
