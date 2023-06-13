@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 const config = require("../db/config");
 
 
-
 async function conectDB(){
     try {
         await mongoose.connect(config.URI)
@@ -96,20 +95,35 @@ class MongodbBase{
             const data = req.body
             const result = await this.collection.find({ username: data.username, password: data.password })
             
-            
-            if(result){
-                console.log("SIDBSAIUDASBIEN")
+            if(result.length != 0){
+                console.log("Verification successfull")
+                
+                return res.status(200).json(result)
             }else{
                 console.log("Nombre de usuario o contraseña incorrecta")
+                return res.status(401).end()
             }
-            
-            // const documents = await this.collection.find({ username: data.username, password: data.password })
-            // return res.status(200)
         } catch (error) {
             console.log("[MONGODB CONTROLLER VERIFY ERROR] ", error)
             return res.status(500).json("[MONGODB CONTROLLER VERIFY ERROR]" , error)
         }
     }
+
+
+    register = async (req, res) =>{
+        try {
+            const data = req.body
+            const result = await this.collection.create(data)
+            console.log("User created ", result)
+            return res.status(201).json(result)
+        } catch (error) {
+            console.log("[MONGODB CONTROLLER REGISTER ERROR] ", error)
+            return res.status(500).json("[MONGODB CONTROLLER REGISTER ERROR]" , error)
+        }
+    }
+
+
+    
 }
 
 module.exports = MongodbBase
