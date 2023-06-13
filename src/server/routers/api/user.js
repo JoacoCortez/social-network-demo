@@ -16,7 +16,7 @@ router.post("/login", controller.verify)
 
 router.put("/login", controller.update)
 
-
+router.post("/login/r", controller.register)
 
 
 // router.post("/login", (req, res) =>{
