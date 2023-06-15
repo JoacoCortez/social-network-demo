@@ -41,13 +41,13 @@ export default function SideNavbar() {
               <p className='list-text'>Inicio</p>
             </li>
             <li>
-              <button onClick={handleShow}>
+              <button className='list-button' onClick={handleShow}>
                 <FaSearch/>
               </button>
               <p className='list-text'>Buscar</p>
             </li>
             <li>
-              <button onClick={handleShow}>
+              <button className='list-button' onClick={handleShow}>
                 <FaPaperPlane/>
               </button>
               <p className='list-text'>Mensajes</p>

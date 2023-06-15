@@ -95,7 +95,7 @@ class MongodbBase{
             const data = req.body
             const result = await this.collection.find({ username: data.username, password: data.password })
             
-            if(result.length != 0){
+            if(result.length !== 0){
                 console.log("Verification successfull")
                 
                 return res.status(200).json(result)
