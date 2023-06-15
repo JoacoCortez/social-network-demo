@@ -12,9 +12,10 @@ export default function Login() {
     password: ""
   })
   const [newUser, setNewuser] = useState({
+    email: "",
     username: "",
     password: "",
-    passwordVerify: password
+    // passwordVerify: ""
 
   })
   
@@ -30,10 +31,13 @@ export default function Login() {
     setFormValue({
       ...formValue, [e.target.name]: e.target.value
     })
-    
+  }
 
-    
 
+  async function handleChangeNew(e){
+    setNewuser({
+      ...newUser, [e.target.name]: e.target.value
+    })
   }
   
 
@@ -61,11 +65,40 @@ export default function Login() {
   async function handleSubmit(e){
     try {
       e.preventDefault()
-      const query = await axios.post("", {
+        
+      const query = await axios.post("http://localhost:8080/api/user/login/r", {
+        email: newUser.email,  
         username: newUser.username,
         password: newUser.password
-
       })    
+      if(query.status === 201){
+        console.log("Usuario creado")
+        navigate("/")
+      }else{
+        console.log("Algo salio mal")
+        return
+      }
+      
+      
+      
+      // if(newUser.password === newUser.passwordVerify){
+      //   const query = await axios.post("", {
+      //     email: newUser.email,  
+      //     username: newUser.username,
+      //     password: newUser.password
+      //   })    
+      //   if(query.status === 200){
+      //     console.log("Usuario creado")
+      //     navigate("/")
+      //   }else{
+      //     console.log("Algo salio mal")
+      //     return
+      //   }
+
+      // }else{
+      //   console.log("Las contraseñas no coinciden")
+      //   return
+      // }
 
 
 
@@ -119,9 +152,10 @@ export default function Login() {
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={handleSubmit} className="sign-up-form">
-              <input className='form-input' type="text" name="username" value={newUser.username} placeholder='Nombre de usuario' required/>
-              <input className='form-input' type="text" name="password" value={newUser.password} placeholder='Contraseña' required/>
-              <input className='form-input' type="text" name="password" value={newUser.password} placeholder='Confirmar contraseña' required/>
+            <input className='form-input' type="email" name="email" onChange={handleChangeNew} value={newUser.email} placeholder='Email' required/>
+              <input className='form-input' type="text" name="username" onChange={handleChangeNew} value={newUser.username} placeholder='Nombre de usuario' required/>
+              <input className='form-input' type="text" name="password" onChange={handleChangeNew} value={newUser.password} placeholder='Contraseña' required/>
+              {/* <input className='form-input' type="text" name="password" onChange={handleChangeNew} value={newUser.password} placeholder='Confirmar contraseña' required/> */}
               <input type="submit" className='form-submit' />
             </form>
           </Modal.Body>
