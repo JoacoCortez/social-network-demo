@@ -7,7 +7,7 @@ class Post extends MongodbBase{
     constructor(){     
         const interactionsSchema = new mongoose.Schema({
             userId: {type: String, required: true},
-            interactionType: {type: String, enum: ["like", "comment", "bones"]}      
+            interactionType: {type: String, enum: ["confused", "funny", "like"]}      
 
         })
         

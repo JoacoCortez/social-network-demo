@@ -12,13 +12,15 @@ export default function PostTab() {
   
   const [interaction, setInteraction] = useState([])
 
-  async function handleInteraction(postID, userID, interactionType){
+  async function handleInteraction(event, postID, userID, interactionType){
       //Guarda la reaccion en la base de datos (AXIOS?)
       try {
-        const newInteraction = await axios.post("/api/interactions", {
+        const targetValue = event.target.dataset.interactionType
+
+        const newInteraction = await axios.post("http://localhost:8080/api/interactions", {
           postID, 
           userID,
-          interactionType
+          targetValue
         })
 
         setInteraction(newInteraction)
@@ -49,9 +51,10 @@ export default function PostTab() {
         }
         
         <div className="post-interactions-controlls">
-          <button className="button-interaction" onClick={handleInteraction}>A</button>
-          <button className="button-interaction" onClick={handleInteraction}>B</button>
-          <button className="button-interaction" onClick={handleInteraction}>C</button>
+          <button className="button-interaction" data-interaction-type='confused' onClick={handleInteraction}>A</button>
+          <button className="button-interaction" data-interaction-type='funny' onClick={handleInteraction}>B</button>
+          
+          <button className="button-interaction-like" data-interaction-type='like' onClick={handleInteraction}>C</button>
         </div>  
       </div>
       <div className="post-comments">
