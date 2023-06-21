@@ -4,7 +4,7 @@ const MongodbBase = require("../controllers/mongodbController");
 
 
 class Post extends MongodbBase{
-    constructor(){     
+    constructor(){
         const interactionsSchema = new mongoose.Schema({
             userId: {type: String, required: true},
             interactionType: {type: String, enum: ["confused", "funny", "like"]}      

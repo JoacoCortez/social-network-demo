@@ -2,10 +2,7 @@ const express = require("express")
 const {Router} = express
 const router = Router()
 
-const PostModel = require("../../models/post")
-const controller = new PostModel
-
-
+const {controller} = require("./posts")
 
 router.get("/api/interactions", controller.getAll)
 
@@ -26,3 +23,5 @@ router.delete("/api/interactions", controller.delete)
 
 
 // })
+
+module.exports = router
