@@ -16,7 +16,10 @@ router.put("/home/post/:id", controller.update)
 router.delete("/home/post/:id", controller.delete)
 
 
-module.exports = router
+module.exports = {
+    router,
+    controller
+}
 
 
 

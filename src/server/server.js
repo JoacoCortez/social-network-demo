@@ -11,14 +11,14 @@ app.use(express.urlencoded({ extended: true }))
 
 
 const userRouter = require("./routers/api/user")
-const postRouter = require("./routers/api/posts")
-
-
+const {router} = require("./routers/api/posts") // postRouter
+const interactionsRouter = require("./routers/api/interactions")
 
 
 
 app.use("/api/user", userRouter)
-app.use("/api/post", postRouter)
+app.use("/api/post", router)    
+app.use("/api/interactions", interactionsRouter)
 
 
 
