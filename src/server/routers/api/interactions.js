@@ -8,6 +8,8 @@ router.get("/api/interactions", controller.getAll)
 
 router.post("/api/interactions", controller.post)
 
+router.put("/api/interactions", controller.updateInteraction)
+
 router.delete("/api/interactions", controller.delete)
 
 

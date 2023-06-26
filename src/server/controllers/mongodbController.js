@@ -74,6 +74,27 @@ class MongodbBase{
             return res.status(500).json("[MONGODB CONTROLLER UPDATE ERROR]" , error)
         }
     }
+
+
+    updateInteraction = async (req, res) =>{
+        try {
+            const data = req.body
+            const targetPost = await this.collection.findOne({id: data._id})
+
+            targetPost.push({
+                userId: data.userID,
+                interactionType: data.targetValue
+            })
+           
+            await targetPost.save()
+
+            return res.status(200).json(targetPost)
+        } catch (error) {
+            console.log("[MONGODB CONTROLLER UPDATEINTERACTION ERROR] ", error)
+            return res.status(500).json("[MONGODB CONTROLLER UPDATEINTERACTION ERROR]" , error)
+        }
+    }
+
     
     
     delete = async (req, res) =>{
