@@ -7,6 +7,13 @@
     margin: 6% auto;
     width: 35%;
     
+    
+    
+}
+
+.post{
+    margin: 10% 0;
+    
     border: 1px solid black;
     background-color: white;
 }
@@ -19,7 +26,7 @@
    border-bottom: 1px solid black;
 }
 
-.post{
+.post-content{
     height: 100%;
     display: flex;
    
@@ -40,24 +47,27 @@
 
     padding: 1% 3%;
     
-
     width: 100%;
+    height: 3.5rem;
+
     border-top: 1px solid black;
 
 }
 
-button{
-    border: 0;
-}
-
-.button-interaction{
-    margin: 0 2%;
-}
 
 .button-interaction-like{
     position: absolute;
     right: 5%;
+    bottom: 20%;
     
+    background-color: inherit;
+    border: 0;
+    
+}
+
+.button-interaction-like svg{
+    font-size: 2rem;
+    color: grey;
 }
 
 .post-comments{
