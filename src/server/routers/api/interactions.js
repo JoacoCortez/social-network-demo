@@ -4,13 +4,13 @@ const router = Router()
 
 const {controller} = require("./posts")
 
-router.get("/api/interactions", controller.getAll)
+router.get("/", controller.getAll)
 
-router.post("/api/interactions", controller.post)
+router.post("/", controller.post)
 
-router.put("/api/interactions", controller.updateInteraction)
+router.put("/", controller.updateInteraction)
 
-router.delete("/api/interactions", controller.delete)
+router.delete("/", controller.delete)
 
 
 

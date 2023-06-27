@@ -28,16 +28,14 @@ export default function PostTab() {
       } catch (error) {
         console.log("FETCH POST ERROR: ", error)
       }
-      
-
     }
+    
     fetchPost()
 
   },[])
   
   
   async function handleInteraction(event, _id, userID, interactionType){
-      //Guarda la reaccion en la base de datos (AXIOS?)
       try {
         const targetValue = event.target.dataset.interactionType
 
