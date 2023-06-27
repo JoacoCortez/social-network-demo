@@ -1,0 +1,29 @@
+.create-post-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid black;
+    border-radius: 2%;
+
+    width: 20%;
+    margin: auto;
+}
+
+.create-text{
+    font-size: 1.5rem;
+    text-align: center;
+    padding: 1%;
+
+    width: 100%;
+    border-bottom: 1px solid black;
+    
+}
+
+.create-post{
+    width: 100%;
+
+    border: 0;
+}
+

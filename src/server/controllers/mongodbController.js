@@ -79,16 +79,19 @@ class MongodbBase{
     updateInteraction = async (req, res) =>{
         try {
             const data = req.body
-            const targetPost = await this.collection.findOne({id: data._id})
+            const targetPost = await this.collection.findOne({_id: data._id})
 
-            targetPost.push({
+            console.log(data, "DATAAA")
+            console.log(targetPost, "TARGET POST")
+
+            targetPost.interactionData.push({
                 userId: data.userID,
                 interactionType: data.targetValue
             })
            
             await targetPost.save()
 
-            return res.status(200).json(targetPost)
+            return res.status(201).end()
         } catch (error) {
             console.log("[MONGODB CONTROLLER UPDATEINTERACTION ERROR] ", error)
             return res.status(500).json("[MONGODB CONTROLLER UPDATEINTERACTION ERROR]" , error)
