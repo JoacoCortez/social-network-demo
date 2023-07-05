@@ -1,23 +1,42 @@
 const express = require("express")
+const session = require("express-session")
 const http = require("http")
 const cors = require("cors")
+const passport = require("passport")
+
+const MongoStore = require("connect-mongo")
+const sessionOpts = {
+    secret: "shhh",
+    resave: false,
+    saveUninitialized: false,
+    store: MongoStore.create({
+        mongoUrl: "mongodb+srv://admin:CVLrBujN32D6wmoD@cluster0.0u89epz.mongodb.net/?retryWrites=true&w=majority",
+        dbName: "test"
+
+    })
+}
+
 
 const app = express();
 const PORT = 8080;
 
+
+
 app.use(cors())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+app.use(session(sessionOpts))
+app.use(passport.initialize());
+app.use(passport.session());
 
-
-const userRouter = require("./routers/api/user")
-const {router} = require("./routers/api/posts") // postRouter
+const { router: userRouter } = require("./routers/api/user");
+const { router: postRouter } = require("./routers/api/posts");
 const interactionsRouter = require("./routers/api/interactions")
+const authRouter = require("./routers/api/auth")
 
-
-
+app.use("/api/auth", authRouter)
 app.use("/api/user", userRouter)
-app.use("/api/post", router)    
+app.use("/api/post", postRouter)    
 app.use("/api/interactions", interactionsRouter)
 
 

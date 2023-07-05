@@ -36,11 +36,11 @@ class MongodbBase{
     
     
     
-    getByID = async (req, res) =>{
+    getByEmail = async (req, res) =>{
         try {
-            const id = req.query
+            const data = req.body
 
-            const documents = await this.collection.find({_id: id})
+            const documents = await this.collection.find({email: data.email})
             return res.status(200).json(documents)
         } catch (error) {
             console.log("[MONGODB CONTROLLER GETBYID ERROR] ", error)
@@ -52,8 +52,6 @@ class MongodbBase{
     post = async (req, res) =>{
         try {
             const data = req.body
-            console.log("COLLECTIONJDSA", this.collection)
-
             const documents = await this.collection.create(data)
             return res.status(201).json(documents)
         } catch (error) {
@@ -117,6 +115,7 @@ class MongodbBase{
     verify = async (req, res) =>{
         try {
             const data = req.body
+            console.log("DATA ", data)
             const result = await this.collection.find({ username: data.username, password: data.password })
             
             if(result.length !== 0){
@@ -146,7 +145,26 @@ class MongodbBase{
         }
     }
 
-
+    auth = async (username, password) =>{
+        try {
+            const user = {username, password}
+            console.log("USER ", user)
+            const result = await this.collection.find({ username: user.username, password: user.password })
+            
+            console.log("RESULT ", result)
+            if(result.length !== 0){
+                console.log("Authentication successfull")
+                
+                return result
+            }else{
+                console.log("Nombre de usuario o contraseña incorrecta")
+                return null
+            }
+        } catch (error) {
+            console.log("[MONGODB CONTROLLER VERIFY ERROR] ", error)
+            throw error
+        }
+    }
     
 }
 
