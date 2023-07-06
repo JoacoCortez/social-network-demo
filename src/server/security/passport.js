@@ -13,7 +13,8 @@ passport.use("auth", new LocalStrategy(
             
             console.log("PASSPORT USER: ", result)
             if(result.status === 200){
-                const serializedUser = {email: result.user.email}
+                const serializedUser = {email: result.user[0].email}
+                console.log(serializedUser)
                 return done(null,serializedUser)
             }else{
                 return done(null, false, {message: "Usuario no encontrado"})
@@ -45,40 +46,45 @@ passport.deserializeUser((email, done) =>{
 
 
 
-const passportMiddleware = () =>{
-    passport.authenticate("auth", (req, res, next) => {
-        console.log("SDSADASDASAD")
-        if(req.isAuthenticated()){
-            res.status(200).json({ message: "Inicio de sesión exitoso" });
-            next()
-        }else{
-            res.status(401).json({message: "Unauthorized"})
-        }
-    })
+// const passportMiddleware = () =>{
+//     passport.authenticate("auth", (req, res, next) => {
+//         console.log("SDSADASDASAD")
+//         if(req.isAuthenticated()){
+//             res.status(200).json({ message: "Inicio de sesión exitoso" });
+//             next()
+//         }else{
+//             res.status(401).json({message: "Unauthorized"})
+//         }
+//     })
+// }
+
+
+// const passportMiddleware = (req, res, next) => {
+//     passport.authenticate("auth", (err, user, info) => {
+//       if (err || !user) {
+//         res.status(401).json({ message: "Unauthorized" });
+//       } else {
+//         req.user = user;
+//         next();
+//       }
+//     })(req, res, next);
+// };
+
+
+
+
+
+const checkAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated()){ 
+        return next() 
+    }else{
+        return
+    }
+  }
+
+
+  module.exports = {
+    //passportMiddleware,
+    checkAuthenticated,
+    passport
 }
-
-
-// const passportMiddleware = () => {
-//     return (req, res, next) => {
-//       passport.authenticate("auth", (err, user) => {
-//         if (err) {
-//           return next(err);
-//         }
-//         if (!user) {
-//           return res.status(401).json({ message: "Unauthorized" });
-//         }
-//         req.logIn(user, (err) => {
-//           if (err) {
-//             return next(err);
-//           }
-//           res.status(200).json({ message: "Inicio de sesión exitoso" });
-//           next();
-//         });
-//       })(req, res, next);
-//     };
-//   };
-
-
-
-
-module.exports = passportMiddleware
