@@ -6,20 +6,21 @@ const {controller} = require("../routers/api/user")
 
 
 
-passport.use("sign-in", new LocalStrategy(
+passport.use("auth", new LocalStrategy(
     async (username, password, done) => {
         try {
             const result = await controller.auth(username, password)
             
             console.log("PASSPORT USER: ", result)
             if(result.status === 200){
-               return done(null, result.user)
+                const serializedUser = {email: result.user.email}
+                return done(null,serializedUser)
             }else{
                 return done(null, false, {message: "Usuario no encontrado"})
             }
             
         } catch (error) {
-            console.log("PASSPORT SIGN IN ERROR ", error)
+            console.log("PASSPORT AUTH ERROR ", error)
             return done(null, error)
         }
     }
@@ -28,38 +29,56 @@ passport.use("sign-in", new LocalStrategy(
 
 
 
-passport.serializeUser((user, done) =>{
-    console.log("SERIALIZE")
-    done(null, user.email)
+passport.serializeUser((email, done) =>{
+    console.log("SERIALIZED")
+    done(null, email)
 
 })
 
 
 
 passport.deserializeUser((email, done) =>{
-    const result = controller.getByEmail(email)
-    done(null, result)
+    //const result = controller.getByEmail(email)
+    console.log("DESERIALIZED", email)
+    done(null, email)
 })
 
 
-module.exports = passport
+
+const passportMiddleware = () =>{
+    passport.authenticate("auth", (req, res, next) => {
+        console.log("SDSADASDASAD")
+        if(req.isAuthenticated()){
+            res.status(200).json({ message: "Inicio de sesión exitoso" });
+            next()
+        }else{
+            res.status(401).json({message: "Unauthorized"})
+        }
+    })
+}
 
 
-
-// const passportMiddleware = (req, res, next) =>{
-//     passport.authenticate("sign-in", (err, user) => {
-//         if(err){
-//             return next(err)
+// const passportMiddleware = () => {
+//     return (req, res, next) => {
+//       passport.authenticate("auth", (err, user) => {
+//         if (err) {
+//           return next(err);
 //         }
-//         if(!user){
-//             console.log("Usuario no encontrado")
-//             return res.status(401).json("Usuario no encontrado")
-//         } else{
-
-//             next()
+//         if (!user) {
+//           return res.status(401).json({ message: "Unauthorized" });
 //         }
-    
-//     })
-//     (req, res, next)
+//         req.logIn(user, (err) => {
+//           if (err) {
+//             return next(err);
+//           }
+//           res.status(200).json({ message: "Inicio de sesión exitoso" });
+//           next();
+//         });
+//       })(req, res, next);
+//     };
+//   };
 
-// }
+
+
+
+module.exports = passportMiddleware

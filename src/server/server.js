@@ -1,8 +1,8 @@
 const express = require("express")
+const passport = require("passport")
 const session = require("express-session")
 const http = require("http")
 const cors = require("cors")
-const passport = require("passport")
 
 const MongoStore = require("connect-mongo")
 const sessionOpts = {
@@ -20,21 +20,23 @@ const sessionOpts = {
 const app = express();
 const PORT = 8080;
 
-
-
 app.use(cors())
+
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
+
 app.use(session(sessionOpts))
 app.use(passport.initialize());
 app.use(passport.session());
 
+
+
 const { router: userRouter } = require("./routers/api/user");
 const { router: postRouter } = require("./routers/api/posts");
 const interactionsRouter = require("./routers/api/interactions")
-const authRouter = require("./routers/api/auth")
 
-app.use("/api/auth", authRouter)
+
+
 app.use("/api/user", userRouter)
 app.use("/api/post", postRouter)    
 app.use("/api/interactions", interactionsRouter)

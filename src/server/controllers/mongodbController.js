@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const config = require("../db/config");
 
 
+
 async function conectDB(){
     try {
         await mongoose.connect(config.URI)
@@ -23,8 +24,9 @@ class MongodbBase{
     
     getAll = async (req, res) => {
         try {
-            const documents = await this.collection.find({})
-            return res.status(200).json(documents)
+              
+                const documents = await this.collection.find({})
+                return res.status(200).json(documents)
 
         } catch (error) {
             console.log("[MONGODB CONTROLLER GETALL ERROR] ", error)
@@ -155,7 +157,7 @@ class MongodbBase{
             if(result.length !== 0){
                 console.log("Authentication successfull")
                 
-                return result
+                return {status: 200, user: result}
             }else{
                 console.log("Nombre de usuario o contraseña incorrecta")
                 return null
