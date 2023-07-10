@@ -1,8 +1,16 @@
 const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy
 
+const jwt = require("jsonwebtoken")
+const secretKey = "123"
 
 const {controller} = require("../routers/api/user")
+
+
+
+
+
+
 
 
 
@@ -14,8 +22,16 @@ passport.use("auth", new LocalStrategy(
             console.log("PASSPORT USER: ", result)
             if(result.status === 200){
                 const serializedUser = {email: result.user[0].email}
+                
+                const payload = {
+                    username: result.user[0].username,
+                    email: result.user[0].email
+                
+                }
+                const token = jwt.sign(payload, secretKey, {expiresIn: "1h" })
+
                 console.log(serializedUser)
-                return done(null,serializedUser)
+                return done(null, serializedUser, token)
             }else{
                 return done(null, false, {message: "Usuario no encontrado"})
             }
@@ -26,8 +42,6 @@ passport.use("auth", new LocalStrategy(
         }
     }
 ))
-
-
 
 
 passport.serializeUser((email, done) =>{
@@ -46,44 +60,32 @@ passport.deserializeUser((email, done) =>{
 
 
 
-// const passportMiddleware = () =>{
-//     passport.authenticate("auth", (req, res, next) => {
-//         console.log("SDSADASDASAD")
-//         if(req.isAuthenticated()){
-//             res.status(200).json({ message: "Inicio de sesión exitoso" });
-//             next()
-//         }else{
-//             res.status(401).json({message: "Unauthorized"})
-//         }
-//     })
-// }
-
-
-// const passportMiddleware = (req, res, next) => {
-//     passport.authenticate("auth", (err, user, info) => {
-//       if (err || !user) {
-//         res.status(401).json({ message: "Unauthorized" });
-//       } else {
-//         req.user = user;
-//         next();
-//       }
-//     })(req, res, next);
-// };
-
-
-
-
 
 const checkAuthenticated = (req, res, next) => {
     if (req.isAuthenticated()){ 
         return next() 
     }else{
-        return
+        res.status(302).redirect("http://localhost:3000/login")
     }
-  }
+}
 
 
-  module.exports = {
+
+const checkToken = (req, res, next) =>{
+    const token = req.headers.authorization?.split(" ")[1]
+        if(!token){
+            return res.status(401).json({message: "Token no proporcionada"})
+        }
+    try {
+        const decoded = jwt.verify(token, secretKey)
+        req.user = decoded
+        next()
+    } catch (error) {
+        return res.status(403).json(error)
+    }
+}
+
+module.exports = {
     //passportMiddleware,
     checkAuthenticated,
     passport

@@ -12,7 +12,7 @@ router.get("/home", checkAuthenticated, controller.getAll)
 
 router.post("/home/post", controller.post)
 
-router.post("/home", passport.authenticate("auth"), controller.getAll)
+//router.post("/home", passport.authenticate("auth"), controller.getAll)
 
 router.put("/home/post/:id", controller.update)
 
