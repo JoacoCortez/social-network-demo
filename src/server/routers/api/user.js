@@ -3,10 +3,9 @@ const {Router} = express;
 const router = Router();
 
 
-const UserModel = require("../../models/user");
-const controller = new UserModel
+const controller = require("../../controllers/userController")
 
-const {passport} = require("../../security/passport");
+const {passport, checkToken} = require("../../security/passport");
 const {checkAuthenticated} = require("../../security/passport")
 
 
@@ -14,9 +13,12 @@ router.post("/login", passport.authenticate("auth"),controller.verify)
 
 router.post("/login/r", passport.authenticate("auth"), controller.register)
 
-router.get("/profile", checkAuthenticated, controller.getAll)
+router.get("/profile", checkToken, controller.getAll)
 
-router.put("/profile", checkAuthenticated, controller.update)
+router.put("/profile", checkToken, controller.update)
+
+
+
 
 
 module.exports = {
