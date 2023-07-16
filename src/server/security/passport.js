@@ -2,11 +2,10 @@ const passport = require("passport")
 const LocalStrategy = require("passport-local").Strategy
 
 const jwt = require("jsonwebtoken")
-const secretKey = "123"
-
-const {controller} = require("../routers/api/user")
+const secretKey = process.env.SECRET_KEY
 
 
+const controller = require("../controllers/userController")
 
 
 
@@ -17,7 +16,7 @@ const {controller} = require("../routers/api/user")
 passport.use("auth", new LocalStrategy(
     async (username, password, done) => {
         try {
-            const result = await controller.auth(username, password)
+            const result = await controller.auth(username, password)  
             
             console.log("PASSPORT USER: ", result)
             if(result.status === 200){
@@ -30,7 +29,7 @@ passport.use("auth", new LocalStrategy(
                 }
                 const token = jwt.sign(payload, secretKey, {expiresIn: "1h" })
 
-                console.log(serializedUser)
+                console.log("token  ", token)
                 return done(null, serializedUser, token)
             }else{
                 return done(null, false, {message: "Usuario no encontrado"})
@@ -53,7 +52,6 @@ passport.serializeUser((email, done) =>{
 
 
 passport.deserializeUser((email, done) =>{
-    //const result = controller.getByEmail(email)
     console.log("DESERIALIZED", email)
     done(null, email)
 })
@@ -86,7 +84,7 @@ const checkToken = (req, res, next) =>{
 }
 
 module.exports = {
-    //passportMiddleware,
+    checkToken,
     checkAuthenticated,
     passport
 }
